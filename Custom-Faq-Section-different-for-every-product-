@@ -1,0 +1,120 @@
+{% assign question_1 = product.metafields.custom.faq_question_1 %}
+{% assign answer_1 = product.metafields.custom.faq_answer_1 %}
+{% assign question_2 = product.metafields.custom.faq_ques_2 %}
+{% assign answer_2 = product.metafields.custom.faq_ans_2 %}
+{% assign question_3 = product.metafields.custom.faq_ques_3 %}
+{% assign answer_3 = product.metafields.custom.faq_ans_3 %}
+{% assign question_4 = product.metafields.custom.faq_ques_4 %}
+{% assign answer_4 = product.metafields.custom.faq_ans_4 %}
+{% assign question_5 = product.metafields.custom.faq_ques_5 %}
+{% assign answer_5 = product.metafields.custom.faq_ans_5 %}
+
+{% if question_1 or answer_1 or question_2 or answer_2 or question_3 or answer_3 or question_4 or answer_4 or question_5 or answer_5 %}
+  <section class="main_faq">
+    <div class="set_faq">
+      <div class="faq_heading">
+        <h2>{{ section.settings.heading }} </h2>
+      </div>
+      <div class="accordion">
+        {% if question_1 and answer_1 %}
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordian-question">{{ question_1 }}</div>
+              <div class="accordion-icon"><img src="https://cdn.shopify.com/s/files/1/0600/1498/5351/files/down-arrow.png?v=1715759464" alt=""></div>
+            </div>
+            <div class="accordion-content">{{ answer_1 }}</div>
+          </div>
+        {% endif %}
+
+        {% if question_2 and answer_2 %}
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordian-question">{{ question_2 }}</div>
+              <div class="accordion-icon"><img src="https://cdn.shopify.com/s/files/1/0600/1498/5351/files/down-arrow.png?v=1715759464" alt=""></div>
+            </div>
+            <div class="accordion-content">{{ answer_2 }}</div>
+          </div>
+        {% endif %}
+
+        {% if question_3 and answer_3 %}
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordian-question">{{ question_3 }}</div>
+              <div class="accordion-icon"><img src="https://cdn.shopify.com/s/files/1/0600/1498/5351/files/down-arrow.png?v=1715759464" alt=""></div>
+            </div>
+            <div class="accordion-content">{{ answer_3 }}</div>
+          </div>
+        {% endif %}
+
+        {% if question_4 and answer_4 %}
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordian-question">{{ question_4 }}</div>
+              <div class="accordion-icon"><img src="https://cdn.shopify.com/s/files/1/0600/1498/5351/files/down-arrow.png?v=1715759464" alt=""></div>
+            </div>
+            <div class="accordion-content">{{ answer_4 }}</div>
+          </div>
+        {% endif %}
+
+        {% if question_5 and answer_5 %}
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <div class="accordian-question">{{ question_5 }}</div>
+              <div class="accordion-icon"><img src="https://cdn.shopify.com/s/files/1/0600/1498/5351/files/down-arrow.png?v=1715759464" alt=""></div>
+            </div>
+            <div class="accordion-content">{{ answer_5 }}</div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const accordionHeaders = document.querySelectorAll(".accordion-header");
+
+  accordionHeaders.forEach(header => {
+    header.addEventListener("click", () => {
+      const currentItem = header.parentNode;
+      const isItemActive = currentItem.classList.contains("active");
+
+      accordionHeaders.forEach(item => {
+        item.parentNode.classList.remove("active");
+        // Reset all icons
+        item.querySelector(".accordion-icon img").style.transition = "transform 0.2s ease";
+        item.querySelector(".accordion-icon img").style.transform = "rotate(0deg)";
+      });
+
+      if (!isItemActive) {
+        currentItem.classList.add("active");
+        // Rotate icon if the item is active
+        header.querySelector(".accordion-icon img").style.transition = "transform 0.2s ease";
+        header.querySelector(".accordion-icon img").style.transform = "rotate(180deg)";
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Faq section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Faq Section"
+    }
+  ]
+}
+{% endschema %}
+
+
